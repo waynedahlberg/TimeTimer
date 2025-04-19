@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct TimeTimerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+struct TimerApp: App {
+  @StateObject private var timerManager = TimerManager()
+  
+  var body: some Scene {
+    MenuBarExtra("Timer", systemImage: "clock.badge.fill") {
+      TimerView()
+        .environmentObject(timerManager)
     }
+    .menuBarExtraStyle(.window)
+  }
 }
